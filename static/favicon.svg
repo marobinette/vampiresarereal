@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#111111"/>
+  <!-- gum line -->
+  <rect x="7" y="9" width="18" height="2.6" rx="1.3" fill="#c1121f"/>
+  <!-- fangs -->
+  <path d="M8.5 10.5 L14.5 10.5 L11.5 22 Z" fill="#f7f5f0"/>
+  <path d="M17.5 10.5 L23.5 10.5 L20.5 22 Z" fill="#f7f5f0"/>
+</svg>

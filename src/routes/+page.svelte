@@ -3,6 +3,9 @@
   // item will look like (see src/lib/server/dynamo.js), so swapping in live
   // data later is a matter of replacing these arrays with a load() fetch.
   import { articles } from '$lib/articles.js';
+  import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, SITE_OG_IMAGE } from '$lib/site.js';
+
+  const pageTitle = "Vampires Are Real — America's Finest Undead News Source";
 
   // The lead story is a real, clickable article — its full page lives at
   // /news/<slug>. Single source of truth: src/lib/articles.js.
@@ -56,7 +59,18 @@
 </script>
 
 <svelte:head>
-  <title>Vampires Are Real — America's Finest Undead News Source</title>
+  <title>{pageTitle}</title>
+  <link rel="canonical" href={`${SITE_URL}/`} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE_NAME} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={SITE_DESCRIPTION} />
+  <meta property="og:url" content={`${SITE_URL}/`} />
+  <meta property="og:image" content={SITE_OG_IMAGE} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={SITE_NAME} />
+  <meta name="twitter:description" content={SITE_DESCRIPTION} />
+  <meta name="twitter:image" content={SITE_OG_IMAGE} />
 </svelte:head>
 
 <!-- Lead story -->

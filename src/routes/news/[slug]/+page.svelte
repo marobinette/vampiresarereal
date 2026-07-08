@@ -1,13 +1,17 @@
 <script>
   import { page } from '$app/stores';
+  import { SITE_URL, SITE_NAME } from '$lib/site.js';
 
   export let data;
   $: article = data.article;
 
+  // Canonical, production URL for this story (stable across preview/dev).
+  $: canonical = `${SITE_URL}/news/${article.slug}`;
+  $: ogImage = `${SITE_URL}${article.image}`;
+
   // Share targets are built from the live page URL, so they work in dev, in
   // preview deploys, and in production without any hard-coded domain.
   $: url = $page.url.href;
-  $: origin = $page.url.origin;
   $: encUrl = encodeURIComponent(url);
   $: encTitle = encodeURIComponent(article.title);
 
@@ -51,11 +55,17 @@
 <svelte:head>
   <title>{article.title} — Vampires Are Real</title>
   <meta name="description" content={article.dek} />
+  <link rel="canonical" href={canonical} />
   <meta property="og:type" content="article" />
+  <meta property="og:site_name" content={SITE_NAME} />
   <meta property="og:title" content={article.title} />
   <meta property="og:description" content={article.dek} />
-  <meta property="og:image" content={`${origin}${article.image}`} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={article.title} />
+  <meta name="twitter:description" content={article.dek} />
+  <meta name="twitter:image" content={ogImage} />
 </svelte:head>
 
 <div class="article-wrap">
