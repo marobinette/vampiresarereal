@@ -1,0 +1,113 @@
+/* ------------------------------------------------------------------ *
+ * Vampires Are Real — global styles
+ *
+ * Aesthetic target: a satirical broadsheet in the vein of The Onion —
+ * stark newsprint white, heavy black sans headlines, a single tabloid
+ * red accent, and a serif body for the "reporting." All design tokens
+ * live here as CSS custom properties; use them instead of hard values.
+ * ------------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Colors — newsprint palette */
+  --paper:      #ffffff; /* page background */
+  --paper-alt:  #f4f2ee; /* cards, wells, dividers backdrop */
+  --ink:        #111111; /* primary text, masthead */
+  --ink-muted:  #5c5852; /* datelines, bylines, meta */
+  --accent:     #c1121f; /* tabloid red — links, kickers, breaking */
+  --accent-dk:  #8f0e17; /* red on hover */
+  --rule:       #111111; /* heavy newspaper rules */
+  --rule-thin:  #d6d1c8; /* hairline dividers */
+
+  /* Type */
+  --font-display: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'PT Serif', Georgia, 'Times New Roman', serif;
+
+  /* Layout */
+  --max-w: 1360px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-dk);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Layout helpers -------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* A kicker / eyebrow label — small red uppercase category tag. */
+.kicker {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Byline / dateline meta in muted mono-ish sans. */
+.meta {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* Heavy top-and-bottom rule wrapper used to fence off sections. */
+.rule-top {
+  border-top: 3px solid var(--rule);
+}
+.rule-bottom {
+  border-bottom: 3px solid var(--rule);
+}
