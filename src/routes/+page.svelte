@@ -6,7 +6,7 @@
   const lead = {
     kicker: 'Breaking',
     title: 'Hierarchy of Vampires and Its Connection to MrBeast',
-    dek: 'There is growing vampire threat! Vampres are far more capable than you know. Vampires feed on your sleep, time, energy, and even your intelligence.',
+    dek: 'There is growing vampire threat! Vampires are far more capable than you know. Vampires feed on your sleep, time, energy, and even your intelligence.',
     byline: 'By Dana Thornwood, Sunlight Correspondent',
     dateline: 'GREENVILLE, NC'
   };
