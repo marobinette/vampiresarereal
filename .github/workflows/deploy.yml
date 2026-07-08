@@ -1,0 +1,25 @@
+name: Deploy to Vercel
+
+# Continuous deployment: every push to main POSTs to the Vercel deploy hook,
+# which builds and promotes the latest commit to production.
+#
+# The hook URL is a SECRET (anyone with it can trigger a deploy). It is stored
+# as the repo secret VERCEL_DEPLOY_HOOK — never commit the raw URL here.
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK secret is not set."
+            exit 1
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK"
+          echo "Deploy hook triggered."
