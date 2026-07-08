@@ -2,14 +2,12 @@
   // Static content for now. This is intentionally shaped like what a DynamoDB
   // item will look like (see src/lib/server/dynamo.js), so swapping in live
   // data later is a matter of replacing these arrays with a load() fetch.
+  import { articles } from '$lib/articles.js';
 
-  const lead = {
-    kicker: 'Breaking',
-    title: 'Hierarchy of Vampires and Its Connection to MrBeast',
-    dek: 'There is growing vampire threat! Vampires are far more capable than you know. Vampires feed on your sleep, time, energy, and even your intelligence.',
-    byline: 'By Dana Thornwood, Sunlight Correspondent',
-    dateline: 'GREENVILLE, NC'
-  };
+  // The lead story is a real, clickable article — its full page lives at
+  // /news/<slug>. Single source of truth: src/lib/articles.js.
+  const lead = articles['hierarchy-of-vampires-and-its-connection-to-mrbeast'];
+  const leadHref = `/news/${lead.slug}`;
 
   const stories = [
     {
@@ -64,18 +62,17 @@
 <!-- Lead story -->
 <article class="lead">
   <p class="kicker lead-kicker">{lead.kicker}</p>
-  <h1 class="lead-title">{lead.title}</h1>
+  <h1 class="lead-title">
+    <a href={leadHref}>{lead.title}</a>
+  </h1>
   <p class="lead-dek">{lead.dek}</p>
-  <p class="meta lead-byline">{lead.byline} · {lead.dateline}</p>
+  <p class="meta lead-byline">By {lead.byline} · {lead.dateline}</p>
 
   <figure class="lead-art">
-    <img
-      src="/evil_mister_beast.png"
-      alt="A red-eyed figure resembling MrBeast lunging through iron bars against a burning skyline"
-    />
-    <figcaption class="lead-art-label">
-      EXCLUSIVE PHOTO · High-level influencer class specimen
-    </figcaption>
+    <a href={leadHref} aria-label={lead.title}>
+      <img src={lead.image} alt={lead.imageAlt} />
+    </a>
+    <figcaption class="lead-art-label">{lead.imageCredit}</figcaption>
   </figure>
 </article>
 
@@ -110,6 +107,16 @@
     text-transform: uppercase;
     font-size: clamp(1.9rem, 5.2vw, 3.6rem);
     max-width: 15ch;
+  }
+  .lead-title a {
+    color: inherit;
+  }
+  .lead-title a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .lead-art a {
+    display: block;
   }
   .lead-dek {
     font-size: 1.18rem;
