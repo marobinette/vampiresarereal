@@ -1,5 +1,9 @@
 <script>
   import '../app.css';
+  import { dev } from '$app/environment';
+  import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
+  injectAnalytics({ mode: dev ? 'development' : 'production' });
 
   // Static dateline for now. Once content is dynamic this can reflect the
   // latest published article's date.
