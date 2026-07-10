@@ -23,9 +23,9 @@
     {
       kicker: 'Local',
       title:
-        'Neighborhood HOA Cracks Down on Coffins Left at Curb Past 7 A.M.',
-      dek: 'Repeat offenders face a strongly worded letter and, in extreme cases, a second strongly worded letter.',
-      byline: 'By P. Vance'
+        'Looksmaxxing Just Became More Disturbing',
+      dek: 'The latest trend in looksmaxxing among young vampires involves being tan. It’s not looking good.',
+      byline: 'By W. Hughes'
     },
     {
       kicker: 'Politics',
